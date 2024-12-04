@@ -13,7 +13,7 @@
   outline: 2px solid hsl(var(--blue)/0.5);
 }
 .popover .popoverContent {
-  inset: unset;
+  position: fixed;
   box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.1607843137);
   border: 1px solid hsl(var(--border));
   border-radius: 1rem;
@@ -29,6 +29,9 @@
 }
 .popover .popoverContent::backdrop {
   background-color: hsl(var(--background)/0.25);
+}
+.popover .popoverContent.fallbackOpen {
+  display: flex;
 }
 
 /*# sourceMappingURL=popover.module.css.map */
