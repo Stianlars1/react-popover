@@ -1,28 +1,25 @@
 import { RefObject, useEffect } from "react";
 
-interface PopoverEventProps<T extends HTMLElement = HTMLElement> {
+interface PopoverEventProps<
+  T extends Element = Element,
+  U extends Element = Element,
+> {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
   triggerRef: RefObject<T>;
-  contentRef: RefObject<HTMLDivElement>;
+  contentRef: RefObject<U>;
   supportsPopover: boolean;
 }
 
-export const usePopoverEvents = <T extends HTMLElement>({
+export const usePopoverEvents = <T extends Element, U extends Element>({
   isOpen,
   setIsOpen,
   triggerRef,
   contentRef,
   supportsPopover,
-}: PopoverEventProps<T>) => {
+}: PopoverEventProps<T, U>) => {
   useEffect(() => {
-    console.log("\nusePopoverEvents");
-    if (supportsPopover) {
-      console.log("supports Popover API");
-      return;
-    }
-
-    console.log("does not support Popover API");
+    if (supportsPopover) return;
 
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -45,6 +42,9 @@ export const usePopoverEvents = <T extends HTMLElement>({
     if (isOpen) {
       document.addEventListener("mousedown", handleClickOutside);
       document.addEventListener("keydown", handleEscapeKey);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleEscapeKey);
     }
 
     return () => {

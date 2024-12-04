@@ -33,17 +33,20 @@ export const usePopoverState = ({
   }, [supportsPopover, contentRef, onStateChange]);
 
   const handleToggle = () => {
+    console.log("handleToggle");
     if (!contentRef.current) return;
 
     const newState = !isOpen;
 
     if (supportsPopover) {
+      console.log("supportsPopover");
       if (newState) {
         contentRef.current.showPopover();
       } else {
         contentRef.current.hidePopover();
       }
     }
+    console.log("doesnt support popover");
 
     setIsOpen(newState);
     onStateChange?.(newState);

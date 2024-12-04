@@ -6,5 +6,5 @@ export const usePopoverSupport = () => {
     setSupportsPopover(HTMLElement.prototype.hasOwnProperty("popover"));
   }, []);
 
-  return { supportsPopover };
+  return { supportsPopover: !supportsPopover };
 };

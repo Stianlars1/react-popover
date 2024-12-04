@@ -1,14 +1,13 @@
 "use client";
 import styles from "./page.module.css";
 import React, { useEffect, useState } from "react";
-import { Popover } from "@/app/v3/components/popover/popover_v2";
+import { Popover } from "@/app/v3/components/popover/popover";
+import { CodePreviewWrapper } from "@/app/v3/components/codePreviewWrapper";
+import { POPOVER_V3_CODE } from "@/app/v3/helper";
 
 export default function V2() {
   const [hasMounted, setHasMounted] = useState(false);
   useEffect(() => setHasMounted(true), []);
-  const TriggerButton = () => (
-    <button className={styles.triggerButton}>Flere valg</button>
-  );
 
   if (!hasMounted) return null;
 
@@ -22,44 +21,46 @@ export default function V2() {
       <div className={styles.main}>
         <section className={styles.section}>
           <Popover
-            trigger={<button onClick={handleOnClick}>Flere valg</button>}
+            trigger={
+              <button className={styles.triggerButton} onClick={handleOnClick}>
+                Click me
+              </button>
+            }
             offsetY={6}
             content={
-              <>
+              <div className={styles.popoverContent}>
                 <button className={styles.itemButton}>
                   [ikon] Opprett produkt
                 </button>
                 <button className={styles.itemButton}>
                   [ikon] Tilpass noe unikt{" "}
                 </button>
-              </>
+              </div>
             }
           />
         </section>
-        {/*        <section className={styles.section}>
-          <h2>Usage guide</h2>
+
+        <section className={styles.section}>
           <CodePreviewWrapper
             code={POPOVER_V3_CODE}
             component={() => (
-                <Popover
-                    trigger={({ onClick, ...props }) => (
-                        <button onClick={handleOnClick} {...props}></button>
-                    )}
-                    offsetY={6}
-                    content={
-                      <>
-                        <button tabIndex={0} className={styles.itemButton}>
-                          [ikon] Opprett produkt
-                        </button>
-                        <button tabIndex={0} className={styles.itemButton}>
-                          [ikon] Tilpass noe unikt{" "}
-                        </button>
-                      </>
-                    }
-                />
+              <Popover
+                trigger={<button onClick={handleOnClick}>Click me</button>}
+                offsetY={6}
+                content={
+                  <>
+                    <button className={styles.itemButton}>
+                      [ikon] Opprett produkt
+                    </button>
+                    <button className={styles.itemButton}>
+                      [ikon] Tilpass noe unikt{" "}
+                    </button>
+                  </>
+                }
+              />
             )}
           />
-        </section>*/}
+        </section>
       </div>
     </div>
   );

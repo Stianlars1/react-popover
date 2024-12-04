@@ -1,17 +1,20 @@
-.popover .popoverContent {
+.popoverContent {
   position: fixed;
   left: 0;
   top: 0;
   z-index: 10;
   display: none;
 }
-.popover .popoverContent:popover-open {
+
+.popoverContent:popover-open {
   display: flex;
 }
-.popover .popoverContent::backdrop {
+
+.popoverContent::backdrop {
   background-color: hsl(var(--background)/0.25);
 }
-.popover .popoverContent.fallbackOpen {
+
+.popoverContent.fallbackOpen {
   display: flex;
 }
 
