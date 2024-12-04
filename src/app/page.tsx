@@ -1,110 +1,25 @@
-"use client"
 import styles from "./page.module.css";
-import {Popover} from "@/components/popover/popover";
-import {PopoverTrigger} from "@/components/popover/components/popoverTrigger/popoverTrigger";
-import {PopoverContent} from "@/components/popover/components/popoverContent/popoverContent";
-import {useEffect, useState} from "react";
-import {PopoverDismiss} from "@/components/popover/components/popoverDismiss/popoverDismiss";
+import { Link } from "next-view-transitions";
+import { Pages } from "@/lib/pages";
 
-export default function Home() {
-    const [hasMounted, setHasMounted] = useState(false);
-    useEffect(() => setHasMounted(true), []);
+export default function Root() {
+  return (
+    <div className={styles.page}>
+      <h1>react-popover</h1>
 
-    if (!hasMounted) return null;
-    return (
-        <div className={styles.page}>
-            <h1>react-popover</h1>
-            <main className={styles.main}>
-                <section>
-                    <h2>position= "bottom"</h2>
-                    <Popover className={styles.popover}>
-                        <PopoverTrigger position={"bottom"} className={styles.popoverTrigger}>
-                            <button>Click to open</button>
-                        </PopoverTrigger>
-                        <PopoverContent className={styles.popoverContent}>
-                            <h3>Wow, a <strong>Popover</strong>!</h3>
-                            <i>Just like magic 🪄🌟</i>
-                            <p>This package utilized the new and modern Popover API for semantic HTML.</p>
-                            <p>The package has built-in accessibility features.</p>
-                            <p>If you click outside, it will auto-dismiss</p>
-                            <PopoverDismiss>Dismiss popover</PopoverDismiss>
-                        </PopoverContent>
-                    </Popover>
-                </section>
+      <ul className={styles.versionsList}>
+        <Link className={styles.versionLink} href={Pages.VERSION_1}>
+          Version 1
+        </Link>
 
-                <section>
+        <Link className={styles.versionLink} href={Pages.VERSION_2}>
+          Version 2
+        </Link>
 
-
-                    <h2>position= "left"</h2>
-                    <Popover className={styles.popover}>
-                        <PopoverTrigger position={"left"} className={styles.popoverTrigger}>
-                            <button>Click to open</button>
-                        </PopoverTrigger>
-                        <PopoverContent className={styles.popoverContent}>
-                            <h3>Wow, a <strong>Popover</strong>!</h3>
-                            <i>Just like magic 🪄🌟</i>
-                            <p>This package utilized the new and modern Popover API for semantic HTML.</p>
-                            <p>The package has built-in accessibility features.</p>
-                            <p>If you click outside, it will auto-dismiss</p>
-                            <PopoverDismiss>Dismiss popover</PopoverDismiss>
-                        </PopoverContent>
-                    </Popover>
-                </section>
-                <section>
-
-                    <h2>position= "top"</h2>
-                    <Popover className={styles.popover}>
-                        <PopoverTrigger position={"top"} className={styles.popoverTrigger}>
-                            <button>Click to open</button>
-                        </PopoverTrigger>
-                        <PopoverContent className={styles.popoverContent}>
-                            <h3>Wow, a <strong>Popover</strong>!</h3>
-                            <i>Just like magic 🪄🌟</i>
-                            <p>This package utilized the new and modern Popover API for semantic HTML.</p>
-                            <p>The package has built-in accessibility features.</p>
-                            <p>If you click outside, it will auto-dismiss</p>
-                            <PopoverDismiss>Dismiss popover</PopoverDismiss>
-                        </PopoverContent>
-                    </Popover>
-                </section>
-
-
-                <section>
-
-
-                    <h2>position= "right"</h2>
-                    <Popover className={styles.popover}>
-                        <PopoverTrigger position={"right"} className={styles.popoverTrigger}>
-                            <button>Click to open</button>
-                        </PopoverTrigger>
-                        <PopoverContent className={styles.popoverContent}>
-                            <h3>Wow, a <strong>Popover</strong>!</h3>
-                            <i>Just like magic 🪄🌟</i>
-                            <p>This package utilized the new and modern Popover API for semantic HTML.</p>
-                            <p>The package has built-in accessibility features.</p>
-                            <p>If you click outside, it will auto-dismiss</p>
-                            <PopoverDismiss>Dismiss popover</PopoverDismiss>
-                        </PopoverContent>
-                    </Popover>
-                </section>
-
-                <section>
-                    <h2>position= "center"</h2>
-                    <Popover className={styles.popover}>
-                        <PopoverTrigger position={"center"} className={styles.popoverTrigger}>
-                            <button>Click to open</button>
-                        </PopoverTrigger>
-                        <PopoverContent className={styles.popoverContent}>
-                            <h3>Wow, a <strong>Popover</strong>!</h3>
-                            <i>Just like magic 🪄🌟</i>
-                            <p>This package utilized the new and modern Popover API for semantic HTML.</p>
-                            <p>The package has built-in accessibility features.</p>
-                            <p>If you click outside, it will auto-dismiss</p>
-                            <PopoverDismiss>Dismiss popover</PopoverDismiss>
-                        </PopoverContent>
-                    </Popover>
-                </section>
-            </main>
-        </div>
-    );
+        <Link className={styles.versionLink} href={Pages.VERSION_3}>
+          Version 3
+        </Link>
+      </ul>
+    </div>
+  );
 }

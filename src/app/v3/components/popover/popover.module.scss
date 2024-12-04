@@ -1,0 +1,42 @@
+.popover {
+  .popoverTrigger {
+    background-color: hsl(var(--blue));
+    color: hsl(var(--foreground));
+    cursor: pointer;
+    outline: none;
+    border: none;
+    font-size: 1.5rem;
+    line-height: 1;
+    border-radius: 999px;
+    padding: 0.35rem 1.5rem;
+
+    &:hover,
+    &:focus {
+      outline: 2px solid hsl(var(--blue) / 0.5);
+    }
+  }
+
+  .popoverContent {
+    inset: unset;
+
+    box-shadow: 0px 4px 12px 0px #00000029;
+    border: 1px solid hsl(var(--border));
+    border-radius: 1rem;
+
+    display: none;
+    flex-direction: column;
+    background-color: #ffffff;
+
+    white-space: nowrap;
+    overflow: hidden;
+    width: fit-content;
+  }
+
+  .popoverContent:popover-open {
+    display: flex;
+  }
+
+  .popoverContent::backdrop {
+    background-color: hsl(var(--background) / 0.25);
+  }
+}
