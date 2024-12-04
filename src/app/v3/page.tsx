@@ -16,7 +16,7 @@ export default function V2() {
       <div className={styles.main}>
         <section className={styles.section}>
           <Popover
-            triggerTitle={"Flere valg"}
+            trigger={<button>Flere valg</button>}
             offsetY={6}
             content={
               <>
@@ -36,7 +36,7 @@ export default function V2() {
             code={POPOVER_V3_CODE}
             component={() => (
               <Popover
-                triggerTitle={"Flere valg"}
+                trigger={<button>Flere valg</button>}
                 offsetY={6}
                 content={
                   <>

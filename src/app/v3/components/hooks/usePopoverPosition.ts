@@ -1,12 +1,12 @@
 import { RefObject, useCallback, useEffect } from "react";
 
-interface PopoverRefs {
-  triggerRef: RefObject<HTMLButtonElement>;
+interface PopoverRefs<T extends HTMLElement = HTMLElement> {
+  triggerRef: RefObject<T>;
   contentRef: RefObject<HTMLDivElement>;
 }
 
-export const usePopoverPosition = (
-  { triggerRef, contentRef }: PopoverRefs,
+export const usePopoverPosition = <T extends HTMLElement>(
+  { triggerRef, contentRef }: PopoverRefs<T>,
   isOpen: boolean,
   offsetY: number = 2,
 ) => {

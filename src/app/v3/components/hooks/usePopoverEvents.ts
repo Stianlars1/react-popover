@@ -1,20 +1,20 @@
 import { RefObject, useEffect } from "react";
 
-interface PopoverEventProps {
+interface PopoverEventProps<T extends HTMLElement = HTMLElement> {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
-  triggerRef: RefObject<HTMLButtonElement>;
+  triggerRef: RefObject<T>;
   contentRef: RefObject<HTMLDivElement>;
   supportsPopover: boolean;
 }
 
-export const usePopoverEvents = ({
+export const usePopoverEvents = <T extends HTMLElement>({
   isOpen,
   setIsOpen,
   triggerRef,
   contentRef,
   supportsPopover,
-}: PopoverEventProps) => {
+}: PopoverEventProps<T>) => {
   useEffect(() => {
     console.log("\nusePopoverEvents");
     if (supportsPopover) {
