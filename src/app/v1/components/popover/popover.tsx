@@ -1,12 +1,12 @@
-"use client"
-import React, {ReactElement, ReactNode, useMemo} from 'react';
-import styles from './popover.module.css';
-import {PopoverContext} from './context/context';
-import {cx} from './utils/utils';
+"use client";
+import React, { ReactElement, ReactNode, useMemo } from "react";
+import styles from "./popover.module.css";
+import { PopoverContext } from "./context/context";
+import { cx } from "./utils/utils";
 
 interface PopoverProps {
-    children: ReactNode;
-    className?: string;
+  children: ReactNode;
+  className?: string;
 }
 
 /**
@@ -46,15 +46,15 @@ interface PopoverProps {
  *
  * @returns {ReactElement} A Popover component that manages its children's state and positioning
  */
-export function Popover({children, className}: PopoverProps): ReactElement {
-    const id = useMemo(
-        () => `popover-${Math.random().toString(36).slice(2, 11)}`,
-        []
-    );
+export function Popover({ children, className }: PopoverProps): ReactElement {
+  const id = useMemo(
+    () => `popover-${Math.random().toString(36).slice(2, 11)}`,
+    [],
+  );
 
-    return (
-        <PopoverContext.Provider value={{id}}>
-            <div className={cx(styles.popover, className)}>{children}</div>
-        </PopoverContext.Provider>
-    );
+  return (
+    <PopoverContext.Provider value={{ id }}>
+      <div className={cx(styles.popover, className)}>{children}</div>
+    </PopoverContext.Provider>
+  );
 }

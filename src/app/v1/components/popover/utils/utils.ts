@@ -15,21 +15,21 @@ export function cx(
   return classes.reduce<string>((acc, cls) => {
     if (cls === null || cls === undefined || cls === false) return acc;
 
-    if (typeof cls === 'string') {
+    if (typeof cls === "string") {
       return acc ? `${acc} ${cls}` : cls;
     }
 
-    if (typeof cls === 'object') {
+    if (typeof cls === "object") {
       const conditionalClasses = Object.entries(cls)
         .filter(([, condition]) => condition)
         .map(([className]) => className);
 
       // Replace with:
       return Array.from(
-        new Set([...acc.split(' '), ...conditionalClasses])
-      ).join(' ');
+        new Set([...acc.split(" "), ...conditionalClasses]),
+      ).join(" ");
     }
 
     return acc;
-  }, '');
+  }, "");
 }

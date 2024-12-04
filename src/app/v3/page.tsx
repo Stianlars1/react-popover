@@ -12,7 +12,7 @@ export default function V2() {
   if (!hasMounted) return null;
 
   const handleOnClick = () => {
-    console.log("clicked");
+    console.info("clicked");
   };
 
   return (

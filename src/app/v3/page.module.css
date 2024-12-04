@@ -1,100 +1,95 @@
 .page {
-    width: 100%;
-    min-height: 200vh;
+  width: 100%;
+  min-height: 200vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin-block-start: 6rem;
+  gap: 2rem;
+
+  .main {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    margin-block-start: 6rem;
-    gap: 2rem;
+    gap: 12rem;
 
+    .section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
 
-    .main {
+      .triggerButton {
+        padding: 0.5rem 1rem;
         display: flex;
-        flex-direction: column;
-        gap: 12rem;
+        justify-content: space-between;
+        align-items: center;
 
-        .section {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        outline: none;
 
+        color: white;
+        background-color: hsl(var(--blue));
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1;
 
-            .triggerButton {
-                padding: 0.5rem 1rem;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
+        cursor: pointer;
+        border-radius: 999px;
+        overflow: hidden;
+        transition:
+          background-color 0.2s ease,
+          transform 0.2s ease;
+        will-change: background-color, transform;
+        border: 1px solid transparent;
 
-                outline: none;
-
-                color: white;
-                background-color: hsl(var(--blue));
-                font-size: 1rem;
-                font-weight: 400;
-                line-height: 1;
-
-                cursor: pointer;
-                border-radius: 999px;
-                overflow: hidden;
-                transition: background-color 0.2s ease, transform 0.2s ease;
-                will-change: background-color, transform;
-                border: 1px solid transparent;
-
-                &:not(:last-child) {
-
-                }
-
-
-                &:hover, &:focus {
-                    background-color: hsl(var(--blue) / 0.75);
-                }
-
-                &:focus {
-                    outline: 2px solid hsl(var(--blue) / 1);
-                    border-color: white;
-                }
-
-                &:active {
-                    transform: scale(0.95)
-                }
-
-
-            }
-
-            .popoverContent {
-                box-shadow: 0px 4px 12px 0px #00000029;
-                border: 1px solid hsl(var(--border));
-                border-radius: 1rem;
-                background-color: #ffffff;
-                overflow: hidden;
-
-                .itemButton {
-                    padding: 1rem;
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    background-color: transparent;
-                    border: none;
-                    outline: none;
-
-                    color: #002776;
-                    font-size: 1rem;
-                    font-weight: 400;
-                    line-height: 24px;
-
-                    cursor: pointer;
-                    width: 100%;
-
-
-                    &:focus, &:active {
-                        background-color: #F2F2F9;
-                    }
-                }
-
-
-            }
+        &:not(:last-child) {
         }
 
+        &:hover,
+        &:focus {
+          background-color: hsl(var(--blue) / 0.75);
+        }
+
+        &:focus {
+          outline: 2px solid hsl(var(--blue) / 1);
+          border-color: white;
+        }
+
+        &:active {
+          transform: scale(0.95);
+        }
+      }
+
+      .popoverContent {
+        box-shadow: 0px 4px 12px 0px #00000029;
+        border: 1px solid hsl(var(--border));
+        border-radius: 1rem;
+        background-color: #ffffff;
+        overflow: hidden;
+        outline: none;
+
+        .itemButton {
+          padding: 1rem;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          background-color: transparent;
+          border: none;
+          outline: none;
+
+          color: #002776;
+          font-size: 1rem;
+          font-weight: 400;
+          line-height: 24px;
+
+          cursor: pointer;
+          width: 100%;
+
+          &:focus,
+          &:active {
+            background-color: #f2f2f9;
+          }
+        }
+      }
     }
+  }
 }

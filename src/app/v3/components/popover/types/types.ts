@@ -43,3 +43,5 @@ export interface PopoverProps {
   offsetY?: number;
   contentClassName?: string;
 }
+
+export type AllowedTriggerRefType = HTMLElement | SVGElement;

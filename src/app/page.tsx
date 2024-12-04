@@ -1,6 +1,6 @@
 import styles from "./page.module.css";
-import { Link } from "next-view-transitions";
 import { Pages } from "@/lib/pages";
+import Link from "next/link";
 
 export default function Root() {
   return (

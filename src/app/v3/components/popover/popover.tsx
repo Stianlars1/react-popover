@@ -6,13 +6,16 @@ import {
   useId,
   useRef,
 } from "react";
-import { usePopoverPosition } from "../hooks/usePopoverPosition";
-import { usePopoverEvents } from "../hooks/usePopoverEvents";
-import { usePopoverSupport } from "@/app/v3/components/hooks/usePopoverSupport";
-import { usePopoverState } from "../hooks/usePopoverState";
+import { usePopoverPosition } from "@/app/v3/components/popover/hooks/usePopoverPosition";
+import { usePopoverEvents } from "@/app/v3/components/popover/hooks/usePopoverEvents";
+import { usePopoverSupport } from "@/app/v3/components/popover/hooks/usePopoverSupport";
+import { usePopoverState } from "@/app/v3/components/popover/hooks/usePopoverState";
 import { cx } from "@/app/v3/components/popover/utils/utils";
 import styles from "./popover.module.css";
-import { PopoverProps } from "@/app/v3/components/popover/types/types";
+import {
+  AllowedTriggerRefType,
+  PopoverProps,
+} from "@/app/v3/components/popover/types/types";
 
 export const Popover = ({
   trigger,
@@ -22,7 +25,7 @@ export const Popover = ({
 }: PopoverProps): ReactElement => {
   const { supportsPopover } = usePopoverSupport();
   const contentRef = useRef<HTMLDivElement>(null);
-  const triggerRef = useRef<HTMLElement | SVGElement>(null);
+  const triggerRef = useRef<AllowedTriggerRefType>(null);
   const uniqueId = useId();
 
   const { isOpen, handleToggle } = usePopoverState({
@@ -30,7 +33,7 @@ export const Popover = ({
     supportsPopover,
   });
 
-  const { updatePosition } = usePopoverPosition<HTMLElement | SVGElement>(
+  const { updatePosition } = usePopoverPosition<AllowedTriggerRefType>(
     { triggerRef, contentRef },
     isOpen,
     offsetY,

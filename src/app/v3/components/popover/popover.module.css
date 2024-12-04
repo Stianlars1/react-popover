@@ -3,15 +3,14 @@
   left: 0;
   top: 0;
   z-index: 10;
+  outline: unset;
+  border: unset;
+  overflow: unset;
   display: none;
 }
 
 .popoverContent:popover-open {
   display: flex;
-}
-
-.popoverContent::backdrop {
-  background-color: hsl(var(--background)/0.25);
 }
 
 .popoverContent.fallbackOpen {
