@@ -1,10 +1,9 @@
 "use client";
 import styles from "./page.module.css";
 import React, { useEffect, useState } from "react";
-import { Popover } from "@/app/v3/components/popover/popover";
 import { POPOVER_V3_CODE } from "@/app/v3/helper";
 import { CodePreviewWrapper } from "@/app/v3/components/codePreviewWrapper";
-import { Popover2 } from "@/app/v3/components/popover/popover_v2";
+import { Popover } from "@/app/v3/components/popover/popover_v2";
 
 export default function V2() {
   const [hasMounted, setHasMounted] = useState(false);
@@ -16,7 +15,7 @@ export default function V2() {
       <h1>Version 3</h1>
       <div className={styles.main}>
         <section className={styles.section}>
-          <Popover2
+          <Popover
             triggerTitle={"Flere valg"}
             offsetY={6}
             content={

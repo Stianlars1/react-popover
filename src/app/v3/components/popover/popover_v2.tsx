@@ -7,7 +7,7 @@ import { usePopoverState } from "../hooks/usePopoverState";
 import styles from "./popover.module.css";
 import { PopoverProps } from "@/app/v3/components/popover/types/popoverTypes";
 
-export const Popover2 = ({
+export const Popover = ({
   triggerTitle,
   content,
   offsetY = 2,
