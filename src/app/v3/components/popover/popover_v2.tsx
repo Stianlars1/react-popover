@@ -1,44 +1,27 @@
-/**
- * A flexible popover component with native API support and fallback implementation.
- *
- * @example
- * <Popover
- *   trigger={<Button>Open Menu</Button>}
- *   content={<div>Popover content</div>}
- *   offsetY={4}
- * />
- */
 "use client";
-import {
-  cloneElement,
-  HTMLAttributes,
-  isValidElement,
-  ReactElement,
-  ReactNode,
-  Ref,
-  useId,
-  useRef,
-} from "react";
+import { isValidElement, ReactElement, ReactNode, useId, useRef } from "react";
 import { usePopoverPosition } from "../hooks/usePopoverPosition";
 import { usePopoverEvents } from "../hooks/usePopoverEvents";
 import { usePopoverSupport } from "@/app/v3/components/hooks/usePopoverSupport";
 import { usePopoverState } from "../hooks/usePopoverState";
-import styles from "./popover.module.css";
+import { cx } from "@/app/v3/components/popover/utils/utils";
 
-interface PopoverProps<T extends HTMLElement> {
-  trigger: ReactElement<HTMLAttributes<T> & { ref?: Ref<T> }>;
+interface PopoverProps {
+  trigger: ReactNode;
   content: ReactNode;
   offsetY?: number;
+  className?: string;
 }
 
-export const Popover = <T extends HTMLElement>({
+export const Popover = ({
   trigger,
   content,
   offsetY = 2,
-}: PopoverProps<T>): ReactElement => {
+  className,
+}: PopoverProps): ReactElement => {
   const { supportsPopover } = usePopoverSupport();
   const contentRef = useRef<HTMLDivElement>(null);
-  const triggerRef = useRef<T>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
   const uniqueId = useId();
 
   const { isOpen, handleToggle } = usePopoverState({
@@ -60,43 +43,63 @@ export const Popover = <T extends HTMLElement>({
     supportsPopover,
   });
 
-  const handleTriggerClick = () => {
+  const handleTriggerClick = (e: React.MouseEvent) => {
     if (!contentRef.current) return;
 
-    handleToggle();
+    // Call original onClick if the trigger is a button
+    if (isValidElement(trigger) && trigger.type === "button") {
+      trigger.props.onClick?.(e);
+    }
 
+    handleToggle();
     if (!isOpen) {
-      requestAnimationFrame(updatePosition);
+      updatePosition();
     }
   };
 
-  if (!isValidElement(trigger)) {
-    throw new Error(
-      'Popover: The "trigger" prop must be a valid React element',
-    );
-  }
+  // Extract button props if trigger is a button element
+  const buttonProps =
+    isValidElement(trigger) && trigger.type === "button"
+      ? {
+          ...trigger.props,
+          className: cx(className, trigger.props.className),
+          "aria-label": trigger.props["aria-label"],
+          tabIndex: trigger.props.tabIndex,
+          // Don't copy onClick as we handle it separately
+          onClick: undefined,
+          // Don't copy ref as we use our own
+          ref: undefined,
+        }
+      : {
+          className,
+        };
 
-  // Clone the trigger element and inject our props
-  const enhancedTrigger = cloneElement(trigger, {
-    ref: triggerRef,
-    onClick: handleTriggerClick,
-    "aria-expanded": isOpen,
-    "aria-controls": uniqueId,
-  });
+  // If trigger is a button, render its children instead
+  const triggerContent =
+    isValidElement(trigger) && trigger.type === "button"
+      ? trigger.props.children
+      : trigger;
 
   return (
-    <div className={styles.popover}>
-      {enhancedTrigger}
+    <>
+      <button
+        {...buttonProps}
+        ref={triggerRef}
+        onClick={handleTriggerClick}
+        aria-expanded={isOpen}
+        aria-controls={uniqueId}
+        type="button"
+      >
+        {triggerContent}
+      </button>
       <div
         ref={contentRef}
-        className={`${styles.popoverContent} ${
-          isOpen && !supportsPopover ? styles.fallbackOpen : ""
-        }`}
+        style={{ position: "fixed", left: 0, top: 0 }}
         id={uniqueId}
         {...(supportsPopover ? { popover: "auto" } : {})}
       >
         {content}
       </div>
-    </div>
+    </>
   );
 };
